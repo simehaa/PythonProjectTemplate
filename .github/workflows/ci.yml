@@ -13,11 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
       - name: Install Poetry
         run: |
           curl -sSL https://install.python-poetry.org/ | python -
-          export GITHUB_PATH="/root/.local/bin:$GITHUB_PATH"
       - name: Cache Poetry
         uses: actions/cache@v3
         id: cache
@@ -28,6 +31,7 @@ jobs:
         run: |
           poetry config virtualenvs.in-project true
           poetry --version
+          poetry env info --path
       - name: Install dependencies
         run: poetry install
         if: steps.cache.outputs.cache-hit != 'true'
