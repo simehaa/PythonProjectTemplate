@@ -22,8 +22,12 @@ jobs:
         uses: actions/cache@v3
         id: cache
         with:
-          path: ~/.venv
+          path: ~/.virtualenv
           key: ${{ runner.os }}-venv-${{ hashFiles('**/poetry.lock') }}
+      - name: Configure Poetry
+        run: |
+          poetry config virtualenvs.in-project false
+          poetry config virtualenvs.path ~/.virtualenv
       - name: Install dependencies
         run: |
           python -m poetry install
