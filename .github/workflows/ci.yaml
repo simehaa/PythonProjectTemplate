@@ -17,6 +17,7 @@ jobs:
       - name: Install Poetry
         run: |
           curl -sSL https://install.python-poetry.org/ | python -
+          export PATH="$HOME/.poetry/bin:$PATH"
       - name: Cache Poetry
         uses: actions/cache@v3
         id: cache
