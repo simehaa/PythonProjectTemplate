@@ -27,6 +27,10 @@ jobs:
       - name: Configure Poetry
         run: |
           poetry config virtualenvs.in-project true
+      - name: test poetry
+        run: |
+          echo $PATH
+          poetry --version
       - name: Install dependencies
         run: |
           python -m poetry install
