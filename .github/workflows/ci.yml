@@ -17,17 +17,16 @@ jobs:
       - name: Install Poetry
         run: |
           curl -sSL https://install.python-poetry.org/ | python -
-          export PATH="$HOME/.poetry/bin:$PATH"
+          export GITHUB_PATH="/root/.local/bin:$GITHUB_PATH"
       - name: Cache Poetry
         uses: actions/cache@v3
         id: cache
         with:
-          path: ~/.virtualenv
+          path: ./.venv
           key: ${{ runner.os }}-venv-${{ hashFiles('**/poetry.lock') }}
       - name: Configure Poetry
         run: |
-          poetry config virtualenvs.in-project false
-          poetry config virtualenvs.path ~/.virtualenv
+          poetry config virtualenvs.in-project true
       - name: Install dependencies
         run: |
           python -m poetry install
