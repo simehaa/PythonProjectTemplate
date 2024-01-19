@@ -22,7 +22,7 @@ jobs:
         run: |
           curl -sSL https://install.python-poetry.org/ | python -
       - name: Cache Poetry
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: cache
         with:
           path: ./.venv
